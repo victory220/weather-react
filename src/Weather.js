@@ -9,6 +9,7 @@ export default function Weather(props) {
   function showWeather(response) {
     setIsLoading(false);
     setWeatherData({
+      name: response.data.name,
       temperature: response.data.main.temp,
       description: response.data.weather[0].description,
       humidity: response.data.main.humidity,
@@ -30,6 +31,9 @@ export default function Weather(props) {
   if (props.city && !isLoading) {
     return (
       <ul className="Weather">
+        <li>
+          <h2>{weatherData.name}</h2>
+        </li>
         <li>Temperature: {Math.round(weatherData.temperature)}°C</li>
         <li>Description: {weatherData.description}</li>
         <li>Humidity: {weatherData.humidity}%</li>

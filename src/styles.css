@@ -7,10 +7,12 @@
   font-family: sans-serif;
   max-width: 600px;
   margin: 30px auto;
-  padding: 60px;
+  padding: 30px;
+  padding-bottom: 0;
   border: solid 2px var(--first-color);
   border-radius: 10px;
   box-shadow: 3px 3px 5px var(--first-color);
+  background: linear-gradient(#f35c6e30, #686ee230);
 }
 
 .App h1 {
@@ -18,19 +20,33 @@
   margin-top: 0;
 }
 
+footer {
+  text-align: center;
+}
+
 .Search {
   text-align: center;
 }
+
+.Search form {
+  margin-bottom: 40px;
+}
+
 .search-input {
   width: 70%;
   height: 35px;
 }
+
 .search-button {
   height: 35px;
 }
 
 .Weather {
   text-align: initial;
+}
+
+.Weather {
+  margin: 0;
 }
 
 .Weather li {
