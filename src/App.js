@@ -9,7 +9,11 @@ export default function App() {
         <Search />
       </div>
       <footer>
-        <a href="https://github.com/victory220/weather-react" target="_blank">
+        <a
+          href="https://github.com/victory220/weather-react"
+          target="_blank"
+          rel="noreferrer"
+        >
           Open-source code
         </a>
         , by Viktoriia Rudnytska
