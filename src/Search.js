@@ -18,14 +18,18 @@ export default function Search() {
   }
   return (
     <div className="Search">
-      <form onSubmit={handleSubmit}>
+      <form
+        className="d-flex justify-content-center align-items-center"
+        onSubmit={handleSubmit}
+      >
         <input
-          className="search-input"
+          className="form-control search-input"
           type="search"
           placeholder="Enter a city"
           onChange={updateCity}
+          autoFocus
         />
-        <input className="search-button" type="submit" value="Search" />
+        <input className="btn btn-secondary" type="submit" value="Search" />
       </form>
       <Weather city={city} />
     </div>

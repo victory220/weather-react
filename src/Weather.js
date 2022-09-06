@@ -30,18 +30,33 @@ export default function Weather(props) {
 
   if (props.city && !isLoading) {
     return (
-      <ul className="Weather">
-        <li>
-          <h2>{weatherData.name}</h2>
-        </li>
-        <li>Temperature: {Math.round(weatherData.temperature)}°C</li>
-        <li>Description: {weatherData.description}</li>
-        <li>Humidity: {weatherData.humidity}%</li>
-        <li>Wind: {Math.round(weatherData.wind)} m/s</li>
-        <li>
-          <img src={weatherData.iconUrl} alt="weather icon" />
-        </li>
-      </ul>
+      <div className="Weather">
+        <div className="row align-items-center">
+          <div className="col-6">
+            <ul>
+              <li>
+                <h2 className="text-center">{weatherData.name}</h2>
+              </li>
+              <li className="icon-temperature d-flex justify-content-center align-items-center">
+                <div>
+                  <img src={weatherData.iconUrl} alt="weather icon" />
+                </div>
+                <div className="temperature">
+                  {Math.round(weatherData.temperature)}
+                  <span className="units">°C</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div className="col-6">
+            <ul>
+              <li className="description">{weatherData.description}</li>
+              <li>Humidity: {weatherData.humidity}%</li>
+              <li>Wind: {Math.round(weatherData.wind)} m/s</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     );
   } else if (isLoading) {
     return (

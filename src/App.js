@@ -1,10 +1,11 @@
 import "./styles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Search from "./Search";
 
 export default function App() {
   return (
-    <>
-      <div className="App">
+    <div className="App">
+      <div className="container app-main">
         <h1>Weather App</h1>
         <Search />
       </div>
@@ -18,6 +19,6 @@ export default function App() {
         </a>
         , by Viktoriia Rudnytska
       </footer>
-    </>
+    </div>
   );
 }
