@@ -1,27 +1,56 @@
 import React, { useState } from "react";
+import axios from "axios";
 import Weather from "./Weather";
 
 export default function Search() {
-  const [input, setInput] = useState("");
   const [city, setCity] = useState("");
+  const [weatherData, setWeatherData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
+  function showWeather(response) {
+    setWeatherData({
+      status: response.status,
+      name: response.data.name,
+      date: response.data.dt,
+      temperature: response.data.main.temp,
+      description: response.data.weather[0].description,
+      humidity: response.data.main.humidity,
+      wind: response.data.wind.speed,
+      icon: response.data.weather[0].icon,
+    });
+    setIsLoading(false);
+    console.log(response);
+  }
+
+  function fetchData() {
+    setIsLoading(true);
+    const apiKey = "69a8934df3c12df0dc3ffddf1977ee44";
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+    axios
+      .get(url)
+      .then(showWeather)
+      .catch((err) => {
+        setWeatherData({
+          status: err.response.status,
+        });
+      });
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
-    if (input.length < 1) {
-      alert("Type a city");
-    } else {
-      setCity(input);
+    if (city.length > 1) {
+      fetchData();
     }
   }
+
   function updateCity(event) {
     event.preventDefault();
-    setInput(event.target.value);
+    setCity(event.target.value);
   }
+
   return (
     <div className="Search">
-      <form
-        className="d-flex justify-content-center align-items-center"
-        onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <input
           className="form-control search-input"
           type="search"
@@ -31,7 +60,7 @@ export default function Search() {
         />
         <input className="btn btn-secondary" type="submit" value="Search" />
       </form>
-      <Weather city={city} />
+      <Weather weatherData={weatherData} isLoading={isLoading} />
     </div>
   );
 }

@@ -1,20 +1,22 @@
 :root {
   --first-color: #ddd;
+  --font-color: #000031;
 }
 
 .App {
   max-width: 600px;
-  font-family: sans-serif;
   margin: 30px auto;
+  color: var(--font-color);
 }
 
 .app-main {
+  font-family: sans-serif;
   padding: 30px;
   padding-bottom: 0;
   border: solid 2px var(--first-color);
   border-radius: 10px;
   box-shadow: 3px 3px 5px var(--first-color);
-  background: linear-gradient(#f35c6e30, #686ee230);
+  background: linear-gradient(#faaca8aa, #ddd6f3);
 }
 
 .app-main h1 {
@@ -24,6 +26,7 @@
 
 footer {
   text-align: center;
+  font-size: 0.875rem;
 }
 
 .Search {
@@ -32,10 +35,12 @@ footer {
 
 .Search form {
   margin-bottom: 40px;
-  gap: 0 10px;
+  display: flex;
+  justify-content: center;
+  gap: 0 4px;
 }
 
-.search-input {
+.Search .search-input {
   width: 70% !important;
 }
 
@@ -59,14 +64,26 @@ footer {
   text-transform: capitalize;
 }
 
+.Weather .icon-temperature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0 10px;
+}
+
 .Weather .temperature {
-  font-size: 48px;
+  font-size: 3rem;
 }
 
 .Weather .units {
-  font-size: 24px;
+  font-size: 1.5rem;
   position: relative;
-  top: -24px;
+  top: -1.5rem;
+}
+
+.weather-alert {
+  width: 330px;
+  margin: 0 auto;
 }
 
 .Loader {
