@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import FormattedDate from "./FormattedDate";
+import WeatherIcon from "./WeatherIcon";
 import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 
@@ -7,16 +9,18 @@ export default function Weather(props) {
   const [isLoading, setIsLoading] = useState(false);
 
   function showWeather(response) {
+    console.log(response.data);
     setIsLoading(false);
     setWeatherData({
       name: response.data.name,
       temperature: response.data.main.temp,
+      date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
-      iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      icon: response.data.weather[0].icon,
     });
-    console.log(response);
+    // console.log(response);
   }
 
   useEffect(() => {
@@ -37,9 +41,10 @@ export default function Weather(props) {
               <li>
                 <h2 className="text-center">{weatherData.name}</h2>
               </li>
+
               <li className="icon-temperature d-flex justify-content-center align-items-center">
                 <div>
-                  <img src={weatherData.iconUrl} alt="weather icon" />
+                  <WeatherIcon code={props.data.icon} />
                 </div>
                 <div className="temperature">
                   {Math.round(weatherData.temperature)}
@@ -50,6 +55,9 @@ export default function Weather(props) {
           </div>
           <div className="col-6">
             <ul>
+              <li>
+                <FormattedDate date={weatherData.date} />
+              </li>
               <li className="description">{weatherData.description}</li>
               <li>Humidity: {weatherData.humidity}%</li>
               <li>Wind: {Math.round(weatherData.wind)} m/s</li>
