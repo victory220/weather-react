@@ -39,7 +39,7 @@ export default function Weather(props) {
               </li>
               <li className="icon-temperature">
                 <div>
-                  <WeatherIcon code={props.weatherData.icon} />
+                  <WeatherIcon code={props.weatherData.icon} size={52} />
                 </div>
                 <WeatherTemperature celsius={props.weatherData.temperature} />
               </li>
