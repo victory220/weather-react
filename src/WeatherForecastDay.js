@@ -12,6 +12,14 @@ function weekDay(time) {
 }
 
 export default function WeatherForecastDay(props) {
+  function convertTemperature(t) {
+    if (props.unit === "fahrenheit") {
+      return (t * 9) / 5 + 32;
+    } else {
+      return t;
+    }
+  }
+
   return (
     <div className="ForecastDay">
       <div className="row">
@@ -20,10 +28,10 @@ export default function WeatherForecastDay(props) {
           <WeatherIcon code={props.data.weather[0].icon} size={36} />
           <div className="ForecastTemp">
             <span className="ForecastTemp-max">
-              {Math.round(props.data.temp.max)}°
+              {Math.round(convertTemperature(props.data.temp.max))}°
             </span>
             <span className="ForecastTemp-min">
-              {Math.round(props.data.temp.min)}°
+              {Math.round(convertTemperature(props.data.temp.min))}°
             </span>
           </div>
         </div>
