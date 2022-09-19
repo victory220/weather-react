@@ -13,7 +13,7 @@ function weekDay(time) {
 
 export default function WeatherForecastDay(props) {
   function convertTemperature(t) {
-    if (props.unit === "fahrenheit") {
+    if (props.units === "fahrenheit") {
       return (t * 9) / 5 + 32;
     } else {
       return t;

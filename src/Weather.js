@@ -41,7 +41,10 @@ export default function Weather(props) {
                 <div>
                   <WeatherIcon code={props.weatherData.icon} size={52} />
                 </div>
-                <WeatherTemperature celsius={props.weatherData.temperature} />
+                <WeatherTemperature
+                  celsius={props.weatherData.temperature}
+                  handleUnits={props.handleUnits}
+                />
               </li>
             </ul>
           </div>

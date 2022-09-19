@@ -7,18 +7,21 @@ export default function WeatherTemperature(props) {
   if (unit === "celsius" && storedUnits) {
     if (storedUnits === "fahrenheit") {
       setUnit("fahrenheit");
+      props.handleUnits("fahrenheit");
     }
   }
 
   function showFahrenheit(event) {
     event.preventDefault();
     setUnit("fahrenheit");
+    props.handleUnits("fahrenheit");
     localStorage.setItem("temperatureUnits", "fahrenheit");
   }
 
   function showCelsius(event) {
     event.preventDefault();
     setUnit("celsius");
+    props.handleUnits("celsius");
     localStorage.clear();
   }
 

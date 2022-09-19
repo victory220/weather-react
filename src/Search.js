@@ -7,6 +7,15 @@ export default function Search() {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [units, setUnits] = useState("celsius");
+
+  function handleUnits(tempUnits) {
+    if (tempUnits === "fahrenheit") {
+      setUnits("fahrenheit");
+    } else {
+      setUnits("celsius");
+    }
+  }
 
   function showWeather(response) {
     setWeatherData({
@@ -22,7 +31,7 @@ export default function Search() {
       icon: response.data.weather[0].icon,
     });
     setIsLoading(false);
-    console.log(response);
+    // console.log(response);
   }
 
   function fetchData() {
@@ -63,9 +72,13 @@ export default function Search() {
         />
         <input className="btn btn-secondary" type="submit" value="Search" />
       </form>
-      <Weather weatherData={weatherData} isLoading={isLoading} />
+      <Weather
+        weatherData={weatherData}
+        isLoading={isLoading}
+        handleUnits={handleUnits}
+      />
       {weatherData.ready && (
-        <WeatherForecast coordinates={weatherData.coordinates} />
+        <WeatherForecast coordinates={weatherData.coordinates} units={units} />
       )}
     </div>
   );

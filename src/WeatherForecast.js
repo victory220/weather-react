@@ -4,22 +4,10 @@ import axios from "axios";
 
 export default function WeatherForecast(props) {
   const [forecastData, setForecastData] = useState(false);
-  const [unit, setUnit] = useState("celsius");
-  const [storedUnits, setStoredUnits] = useState(
-    localStorage.getItem("temperatureUnits")
-  );
-
-  useEffect(() => {
-    if (unit === "celsius" && storedUnits) {
-      if (storedUnits === "fahrenheit") {
-        setUnit("fahrenheit");
-      }
-    }
-  }, [storedUnits, unit]);
 
   function showForecast(response) {
-    setForecastData(response.data.daily);
-    console.log(response);
+    setForecastData(response.data.daily.slice(0, 5));
+    // console.log(response);
   }
 
   useEffect(() => {
@@ -33,15 +21,11 @@ export default function WeatherForecast(props) {
       <div className="WeatherForecast">
         <div className="row">
           {forecastData.map((daily, index) => {
-            if (index < 5) {
-              return (
-                <div className="col" key={index}>
-                  <WeatherForecastDay data={daily} unit={unit} />
-                </div>
-              );
-            } else {
-              return <></>;
-            }
+            return (
+              <div className="col" key={index}>
+                <WeatherForecastDay data={daily} units={props.units} />
+              </div>
+            );
           })}
         </div>
       </div>
